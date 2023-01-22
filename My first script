@@ -1,0 +1,770 @@
+local library   = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/random%202"))()
+local One = library:Window("Title")
+
+One:Box("useless", "Box", function()
+    
+    end)
+
+One:Button("Reach sometimes detectable", function()
+    local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
+
+local w = library:CreateWindow("Sword X") -- Creates the window
+
+local b = w:CreateFolder("useful") -- Creates the folder(U will put here your buttons,etc)
+
+b:Label("Useful Stuff",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+
+b:Button("Circle Reach",function()
+    local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Reach = Instance.new("TextButton")
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.0809101239, 0, 0.203790441, 0)
+Frame.Size = UDim2.new(0, 150, 0, 90)
+Frame.Active = true
+Frame.Draggable = true
+
+Reach.Name = "cum gui by raz"
+Reach.Parent = Frame
+Reach.BorderSizePixel = 0
+Reach.Position = UDim2.new(0, 0, 0.039088048, 0)
+Reach.Size = UDim2.new(0, 143, 0, 38)
+Reach.Font = Enum.Font.GothamBlack
+Reach.Text = "raz's reach (click me)"
+Reach.TextSize = 14.000
+Reach.MouseButton1Down:connect(function()
+	local sound = Instance.new("Sound")
+	sound.SoundId = "rbxassetid://4771152040"
+	sound.Parent = game:GetService("SoundService")
+	sound:Play()
+
+	wait()
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "how to use this amazing reach?"; -- the title (ofc)
+		Text = "equip your item first then press the button tell me if u want bigger reach or smaller imposter#4878"; -- what the text says (ofc)
+		Duration = 10; -- how long the notification should in secounds
+	})
+	for i,v in pairs(game:GetService'Players'.LocalPlayer.Character:GetChildren()) do
+		if v:isA("Tool") then
+			local a = Instance.new("SelectionSphere",v.Handle)
+			v.Handle.Massless = true
+			v.Handle.Transparency = 0
+			a.Adornee = v.Handle
+			v.Handle.Size = Vector3.new(7, 7 , 7)
+			local selectionBox = Instance.new("SelectionSphere",v.Handle)
+			selectionBox.Adornee = v.Handle
+			SurfaceSelection = 0
+		end
+	end
+ end)
+
+end)
+
+b:Toggle("blizzy",function(state)
+    shared.toggle = state
+    loadstring(game:HttpGet("https://gist.githubusercontent.com/OptioniaI/b7326d42da50a52edf2c511533ae603d/raw/137840f68aef962c4bb6ae01009d5f7a5af4627d/blz-reach"))()
+end)
+
+b:Slider("Speed",{
+    min = 10; -- min value of the slider
+    max = 50; -- max value of the slider
+    precise = true; -- max 2 decimals
+},function(value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+
+b:Dropdown("Dropdown",{"A","B","C"},true,function(mob) --true/false, replaces the current title "Dropdown" with the option that t
+    print(mob)
+end)
+
+b:Bind("Bind",Enum.KeyCode.C,function() --Default bind
+    print("Yes")
+end)
+
+b:ColorPicker("ColorPicker",Color3.fromRGB(255,0,0),function(color) --Default color
+    print(color)
+end)
+
+b:Box("Jumpower","value",function(value) -- "number" or "string"
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end)
+
+b:DestroyGui()
+
+--[[
+How to refresh a dropdown:
+1)Create the dropdown and save it in a variable
+local yourvariable = b:Dropdown("Hi",yourtable,function(a)
+    print(a)
+end)
+2)Refresh it using the function
+yourvariable:Refresh(yourtable)
+How to refresh a label:
+1)Create your label and save it in a variable
+local yourvariable = b:Label("Pretty Useless NGL",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+})
+2)Refresh it using the function
+yourvariable:Refresh("Hello") It will only change the text ofc
+
+]]
+
+local b = w:CreateFolder("by owo uwu#4878 ðŸ¥µ") -- Creates the folder(U will put here your buttons,etc)
+end)
+
+One:Button("reach undetectable", function()
+    --// Message \\--
+--[[
+    The original script wasnt made by me [doge#7202]
+    I just forked the script and added a keybind to change the range.
+    The original script creator is epzi
+    Make sure to tweak the settings to your likings
+    Have a great day!
+    [Forked version of script made by doge#7202 on discord]
+]]
+
+--// Setting \\--
+local range = 15 --The deafult range for the script
+local rangeAddkeybind = Enum.KeyCode.E --Change the "E" to the keybind you want to use to add range.
+local rangeSubtractkeybind = Enum.KeyCode.Q --Change the "Q" to the keybind you want to use to subtract range.
+local TogglePreciseRange = Enum.KeyCode.BackSlash --Change the "BackSlash" to the key you want to toggle precise range
+local DoNotDisturb = false --If its on true, the script will notifiy you if your range has been changed. if its false then it doesnt notify.
+local PreciseRange = false --Keep this off if you dont want your range value to have numbers that go into the 0.01's.
+
+--// Variable \\--
+local player = game:GetService("Players").LocalPlayer
+local UIS = game:GetService("UserInputService")
+local CoreGui = game:GetService("StarterGui")
+
+--// Keybind Functions \\--
+UIS.InputBegan:connect(function(input)
+	if input.KeyCode == rangeSubtractkeybind then
+	    if PreciseRange == true then
+	        range = range - 0.01
+	    else
+            range = range - 1
+        end
+        wait()
+        if DoNotDisturb == false then
+            game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the range was set to"..range})
+        end
+	end
+end)
+
+UIS.InputBegan:connect(function(input)
+	if input.KeyCode == rangeAddkeybind then
+	    if PreciseRange == true then
+	        range = range + 0.01
+	    else
+            range = range + 1
+        end
+        wait()
+        if DoNotDisturb == false then
+            game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the range was set to"..range})
+        end
+	end
+end)
+
+UIS.InputBegan:connect(function(input)
+	if input.KeyCode == TogglePreciseRange then
+        if PreciseRange == false then
+            PreciseRange = true
+            if DoNotDisturb == false then
+                game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the Precise range was set to true"})
+            end
+        else
+            PreciseRange = false
+            if DoNotDisturb == false then
+                game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the Precise range was set to false"})
+            end
+        end
+        
+	end
+end)
+
+--// Script \\--
+game:GetService("RunService").RenderStepped:Connect(function()
+    local p = game.Players:GetPlayers()
+    for i = 2, #p do local v = p[i].Character
+        if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.HumanoidRootPart.Position) <= range then
+            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+            if tool and tool:FindFirstChild("Handle") then
+                tool:Activate()
+                for i,v in next, v:GetChildren() do
+                    if v:IsA("BasePart") then
+                        firetouchinterest(tool.Handle,v,0)
+                        firetouchinterest(tool.Handle,v,1)
+                    end
+                end
+            end
+        end
+    end
+end)
+
+if DoNotDisturb == false then
+    game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Script Load", Text = "the script loaded successfully!"})
+end
+end)
+
+One:Button("doors script op", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
+end)
+
+One:Button("vape v4 for bed wars", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
+end)
+
+One:Button("aimlock mostly works", function()
+    _G.TargetAim = {
+    ["Key"] = "q",
+    ["Mode"] = "Toggle", -- "Toggle" or "Hold"
+    ["Prediction"] = 0.12118, -- Lower if Lower Ping, Higher if Higher Ping
+    ["Auto-Prediction"] = false,
+    ["Aimpart"] = "HumanoidRootPart",
+    ["Face-Target"] = false,
+    ["Notif-Toggle"] = false,
+    ["Chat-Toggle"] = false,
+    ["View-Toggle"] = false,
+    ["Resolver-V1"] = false,
+    ["Resolver-Delay"] = 0.195,
+    ["Resolver-Aimpart"] = "HumanoidRootPart",
+    ["Resolver-AntiSky"] = true,
+    ["Resolver-AntiGround"] = true,
+    ["Resolver-Reverse"] = false,
+    ["Orbit-Toggle"] = false,
+    ["Orbit-Speed"] = 8,
+    ["Orbit-Size"] = 8,
+    ["Orbit-Height"] = 0, -- No Negatives
+    ["Vertical-Velocity-Toggle"] = false,
+    ["Vertical-Velocity"] = 0,
+    ["Horizontal-Velocity-Toggle"] = false,
+    ["Horizontal-Velocity"] = 0,
+    ["Onshot-Visual"] = false,
+    ["Onshot-Visual-Color"] = Color3.fromRGB(119,0,255),
+    ["Onshot-Visual-Material"] = "ForceField", -- "Plastic", "ForceField", "Neon"
+    ["Onshot-Visual-Life"] = 1, -- Seconds
+    ["Onshot-Sound"] = false,
+    ["Onshot-Sound-Sound"] = 12413331,
+    ["Check-For-Part"] = "HumanoidRootPart",
+    ["FOV-Check"] = false,
+    ["FOV-Check-Color"] = Color3.fromRGB(119,0,255),
+    ["FOV-Size"] = 100,
+    ["Circle-Thickness"] = 2, 
+    ["Filled-Circle"] = false,
+    ["Circle-Transparency"] = 1, --Invisible
+    ["Visible-Check"] = false,
+    ["Down-Check"] = false, -- For Hood Customs and Untitled Hood
+    ["Dot"] = true,
+    ["Dot-Color"] = Color3.fromRGB(119,0,255),
+    ["Tracer"] = false,
+    ["Tracer-Color"] = Color3.fromRGB(119,0,255),
+    ["Highlight"] = false,
+    ["Highlight-Color"] = Color3.fromRGB(119,0,255),
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nyulachan/nyula/main/Standalones/SilentAim", true))()
+end)
+
+One:Button("another script", function()
+    local DiscordLib =
+    loadstring(game:HttpGet "https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/discord")()
+
+local win = DiscordLib:Window("discord library")
+
+local serv = win:Server("Preview", "")
+
+local btns = serv:Channel("Buttons")
+
+btns:Button(
+    "reach sometimes detectable",
+    function()
+        local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
+
+local w = library:CreateWindow("Sword X") -- Creates the window
+
+local b = w:CreateFolder("useful") -- Creates the folder(U will put here your buttons,etc)
+
+b:Label("Useful Stuff",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+
+b:Button("Circle Reach",function()
+    local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Reach = Instance.new("TextButton")
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.0809101239, 0, 0.203790441, 0)
+Frame.Size = UDim2.new(0, 150, 0, 90)
+Frame.Active = true
+Frame.Draggable = true
+
+Reach.Name = "cum gui by raz"
+Reach.Parent = Frame
+Reach.BorderSizePixel = 0
+Reach.Position = UDim2.new(0, 0, 0.039088048, 0)
+Reach.Size = UDim2.new(0, 143, 0, 38)
+Reach.Font = Enum.Font.GothamBlack
+Reach.Text = "raz's reach (click me)"
+Reach.TextSize = 14.000
+Reach.MouseButton1Down:connect(function()
+	local sound = Instance.new("Sound")
+	sound.SoundId = "rbxassetid://4771152040"
+	sound.Parent = game:GetService("SoundService")
+	sound:Play()
+
+	wait()
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "how to use this amazing reach?"; -- the title (ofc)
+		Text = "equip your item first then press the button tell me if u want bigger reach or smaller imposter#4878"; -- what the text says (ofc)
+		Duration = 10; -- how long the notification should in secounds
+	})
+	for i,v in pairs(game:GetService'Players'.LocalPlayer.Character:GetChildren()) do
+		if v:isA("Tool") then
+			local a = Instance.new("SelectionSphere",v.Handle)
+			v.Handle.Massless = true
+			v.Handle.Transparency = 0
+			a.Adornee = v.Handle
+			v.Handle.Size = Vector3.new(7, 7 , 7)
+			local selectionBox = Instance.new("SelectionSphere",v.Handle)
+			selectionBox.Adornee = v.Handle
+			SurfaceSelection = 0
+		end
+	end
+ end)
+
+end)
+
+b:Toggle("blizzy",function(state)
+    shared.toggle = state
+    loadstring(game:HttpGet("https://gist.githubusercontent.com/OptioniaI/b7326d42da50a52edf2c511533ae603d/raw/137840f68aef962c4bb6ae01009d5f7a5af4627d/blz-reach"))()
+end)
+
+b:Slider("Speed",{
+    min = 10; -- min value of the slider
+    max = 50; -- max value of the slider
+    precise = true; -- max 2 decimals
+},function(value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+
+b:Dropdown("Dropdown",{"A","B","C"},true,function(mob) --true/false, replaces the current title "Dropdown" with the option that t
+    print(mob)
+end)
+
+b:Bind("Bind",Enum.KeyCode.C,function() --Default bind
+    print("Yes")
+end)
+
+b:ColorPicker("ColorPicker",Color3.fromRGB(255,0,0),function(color) --Default color
+    print(color)
+end)
+
+b:Box("Jumpower","value",function(value) -- "number" or "string"
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end)
+
+b:DestroyGui()
+
+--[[
+How to refresh a dropdown:
+1)Create the dropdown and save it in a variable
+local yourvariable = b:Dropdown("Hi",yourtable,function(a)
+    print(a)
+end)
+2)Refresh it using the function
+yourvariable:Refresh(yourtable)
+How to refresh a label:
+1)Create your label and save it in a variable
+local yourvariable = b:Label("Pretty Useless NGL",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+})
+2)Refresh it using the function
+yourvariable:Refresh("Hello") It will only change the text ofc
+
+]]
+
+local b = w:CreateFolder("by owo uwu#4878 ðŸ¥µ") -- Creates the folder(U will put here your buttons,etc)
+        DiscordLib:Notification("Notification", "executed", "Ok")
+    end
+)
+
+btns:Seperator()
+
+btns:Button(
+    "doors script overpowered",
+    function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
+        DiscordLib:Notification("Notification", "executed", "Ok")
+    end
+)
+
+btns:Button(
+    "reach undetectable built-in Auto clicker",
+    function()
+        --// Message \\--
+--[[
+    The original script wasnt made by me [doge#7202]
+    I just forked the script and added a keybind to change the range.
+    The original script creator is epzi
+    Make sure to tweak the settings to your likings
+    Have a great day!
+    [Forked version of script made by doge#7202 on discord]
+]]
+
+--// Setting \\--
+local range = 15 --The deafult range for the script
+local rangeAddkeybind = Enum.KeyCode.E --Change the "E" to the keybind you want to use to add range.
+local rangeSubtractkeybind = Enum.KeyCode.Q --Change the "Q" to the keybind you want to use to subtract range.
+local TogglePreciseRange = Enum.KeyCode.BackSlash --Change the "BackSlash" to the key you want to toggle precise range
+local DoNotDisturb = false --If its on true, the script will notifiy you if your range has been changed. if its false then it doesnt notify.
+local PreciseRange = false --Keep this off if you dont want your range value to have numbers that go into the 0.01's.
+
+--// Variable \\--
+local player = game:GetService("Players").LocalPlayer
+local UIS = game:GetService("UserInputService")
+local CoreGui = game:GetService("StarterGui")
+
+--// Keybind Functions \\--
+UIS.InputBegan:connect(function(input)
+	if input.KeyCode == rangeSubtractkeybind then
+	    if PreciseRange == true then
+	        range = range - 0.01
+	    else
+            range = range - 1
+        end
+        wait()
+        if DoNotDisturb == false then
+            game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the range was set to"..range})
+        end
+	end
+end)
+
+UIS.InputBegan:connect(function(input)
+	if input.KeyCode == rangeAddkeybind then
+	    if PreciseRange == true then
+	        range = range + 0.01
+	    else
+            range = range + 1
+        end
+        wait()
+        if DoNotDisturb == false then
+            game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the range was set to"..range})
+        end
+	end
+end)
+
+UIS.InputBegan:connect(function(input)
+	if input.KeyCode == TogglePreciseRange then
+        if PreciseRange == false then
+            PreciseRange = true
+            if DoNotDisturb == false then
+                game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the Precise range was set to true"})
+            end
+        else
+            PreciseRange = false
+            if DoNotDisturb == false then
+                game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Notification", Text = "the Precise range was set to false"})
+            end
+        end
+        
+	end
+end)
+
+--// Script \\--
+game:GetService("RunService").RenderStepped:Connect(function()
+    local p = game.Players:GetPlayers()
+    for i = 2, #p do local v = p[i].Character
+        if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.HumanoidRootPart.Position) <= range then
+            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+            if tool and tool:FindFirstChild("Handle") then
+                tool:Activate()
+                for i,v in next, v:GetChildren() do
+                    if v:IsA("BasePart") then
+                        firetouchinterest(tool.Handle,v,0)
+                        firetouchinterest(tool.Handle,v,1)
+                    end
+                end
+            end
+        end
+    end
+end)
+
+if DoNotDisturb == false then
+    game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Script Load", Text = "the script loaded successfully!"})
+end
+        DiscordLib:Notification("Notification", "executed", "Ok")
+    end
+)
+
+serv:Channel("by khonor")
+
+win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
+
+end)
+
+One:Button("another gui made by me aimlock", function()
+    --No example for this one, It's worth it though if you take the time to use this!
+--https://v3rmillion.net/member.php?action=profile&uid=456772
+
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/modern"))()
+--[[
+Functions:
+Lib:Tab(name)
+Tab:Button(text, func)
+Tab:DropDown(text, drops, func)
+Tab:Label(name, text)
+Tab:TextBox(text, func)
+Tab:Toggle(text, func)
+]]--
+local ExampleTab = Lib:Tab("aimloack execute both of them")
+ExampleTab:Button("aimlock 1", function()
+-- main aimlock settings
+local configs = {
+    main = {
+        enabled = true,
+        aimlockkey = "q",
+        prediction = 0.189,
+        aimpart = 'HumanoidRootPart', -- Head, UpperTorso, HumanoidRootPart, LowerTorso
+        notifications = true
+    }
+}
+
+-- box / marker settings
+
+local boxsettings = {
+    box = {
+        Showbox = true,
+
+        boxsize = Vector3.new(3.3, 3, 2.8), -- Box Size
+        markercolor = Color3.fromRGB(0, 0, 0), -- Marrker Color
+        markersize = UDim2.new(1, 0, 3, 0) -- Marker Size
+    }
+}
+
+-- dont mess with anything below
+local box = Instance.new("Part", game.Workspace)
+
+local Mouse = game.Players.LocalPlayer:GetMouse()
+
+function makemarker(Parent, Adornee, Color, Size, Size2)
+    local box = Instance.new("BillboardGui", Parent)
+    box.Name = "PRIVATE-REWRITE!"
+    box.Adornee = Adornee
+    box.Size = UDim2.new(Size, Size2, Size, Size2)
+    box.AlwaysOnTop = true
+
+    local a = Instance.new("Frame", box)
+    a.Size = boxsettings.box.markersize
+    a.BackgroundColor3 = Color
+
+    local g = Instance.new("UICorner", a)
+    g.CornerRadius = UDim.new(50, 25)
+    return (box)
+end
+
+local Plr
+Mouse.KeyDown:Connect(function(KeyPressed)
+    if KeyPressed == (configs.main.aimlockkey) then
+        if configs.main.enabled == true then
+            configs.main.enabled = false
+            if configs.main.notifications == true then
+                Plr = FindClosestUser()
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Private",
+                    Text = "Unlocked;"
+                })
+            end
+        else
+            Plr = FindClosestUser()
+            configs.main.enabled = true
+            if configs.main.notifications == true then
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Private",
+                    Text = "Locked On;  " .. tostring(Plr.Character.Humanoid.DisplayName)
+                })
+            end
+        end
+    end
+end)
+
+local data = game.Players:GetPlayers()
+function noob(player)
+    local character
+    repeat
+        wait()
+    until player.Character
+    local handler = makemarker(guimain, player.Character:WaitForChild(configs.main.aimpart),
+        Color3.fromRGB(107, 184, 255), 0.10, 8)
+    handler.Name = player.Name
+    player.CharacterAdded:connect(function(Char)
+        handler.Adornee = Char:WaitForChild("HumanoidRootPart")
+    end)
+end
+
+for i = 1, #data do
+    if data[i] ~= game.Players.LocalPlayer then
+        noob(data[i])
+    end
+end
+
+game.Players.PlayerAdded:connect(function(Player)
+    noob(Player)
+end)
+
+spawn(function()
+    box.Anchored = true
+    box.CanCollide = false
+    box.Size = boxsettings.box.boxsize
+    if boxsettings.box.Showbox == true then
+        box.Transparency = 0.70
+    else
+        box.Transparency = 1
+    end
+    makemarker(box, box, boxsettings.box.markercolor, 0.40, 1)
+end)
+
+function FindClosestUser()
+    local closestPlayer
+    local ShortestDistance = 300
+
+    for i, v in pairs(game.Players:GetPlayers()) do
+        if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and
+            v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") then
+            local pos = game:GetService "Workspace".CurrentCamera:WorldToViewportPoint(v.Character.PrimaryPart.Position)
+            local magnitude = (Vector2.new(pos.X, pos.Y) -
+                                  Vector2.new(game.Players.LocalPlayer:GetMouse().X,
+                    game.Players.LocalPlayer:GetMouse().Y)).magnitude
+            if magnitude < ShortestDistance then
+                closestPlayer = v
+                ShortestDistance = magnitude
+            end
+        end
+    end
+    return closestPlayer
+end
+
+game:GetService "RunService".Stepped:connect(function()
+    if configs.main.enabled and Plr.Character and Plr.Character:FindFirstChild("HumanoidRootPart") then
+        box.CFrame = CFrame.new(Plr.Character[configs.main.aimpart].Position +
+                                    (Plr.Character.UpperTorso.Velocity * configs.main.prediction))
+    else
+        box.CFrame = CFrame.new(0, 9999, 0)
+    end
+end)
+
+repeat
+    wait()
+until game:IsLoaded()
+local mt = getrawmetatable(game)
+local old = mt.__namecall
+setreadonly(mt, false)
+mt.__namecall = newcclosure(function(...)
+    local args = {...}
+    if configs.main.enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePos" then
+        args[3] = Plr.Character[configs.main.aimpart].Position +
+                      (Plr.Character[configs.main.aimpart].Velocity * configs.main.prediction)
+        return old(unpack(args))
+    end
+    return old(...)
+end)
+end)
+ExampleTab:Button("aimlock 2", function()
+--credits to thatsnotmatt#2602
+getgenv().keytoclick = "Q"
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = keytoclick
+tool.Activated:connect(function()
+    local vim = game:service("VirtualInputManager")
+vim:SendKeyEvent(true, keytoclick, false, game)
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+wait(0.2)
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local Notify = AkaliNotif.Notify;
+Notify({
+Description = "thatsnotmatt#2602";
+Title = "zzz#0001";
+Duration = 10;
+});
+end)
+ExampleTab:Button("keyboard (Glitchy)", function()
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/mob.txt'),true))()
+local KeyboardguiWarriorRoberrVersion = Instance.new("ScreenGui")
+local Drag = Instance.new("Frame")
+local Close = Instance.new("TextButton")
+
+--Properties:
+
+KeyboardguiWarriorRoberrVersion.Name = "Keyboard gui WarriorRoberr Version"
+KeyboardguiWarriorRoberrVersion.Parent = game.CoreGui
+KeyboardguiWarriorRoberrVersion.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Drag.Name = "Drag"
+Drag.Parent = KeyboardguiWarriorRoberrVersion
+Drag.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Drag.BorderSizePixel = 0
+Drag.Position = UDim2.new(0.147916675, 0, 0.0593749993, 0)
+Drag.Size = UDim2.new(0, 270, 0, 30)
+Drag.Active = true
+Drag.Draggable = true
+
+Close.Name = "Close"
+Close.Parent = Drag
+Close.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0.999839723, 0, -0.00729167089, 0)
+Close.Size = UDim2.new(0, 30, 0, 30)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "X"
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close.TextSize = 35.000
+Close.MouseButton1Click:Connect(function()
+	KeyboardguiWarriorRoberrVersion:Destroy()
+end)
+game.CoreGui["BUNB0yBUN BOARD"].KeyBoard.Parent = Drag
+game.CoreGui["BUNB0yBUN BOARD"]:Destroy()
+game.CoreGui["Keyboard gui WarriorRoberr Version"].Drag.KeyBoard.Bunb0ybun.Text = "BETTER VERSION "
+game.CoreGui["Keyboard gui WarriorRoberr Version"].Drag.KeyBoard.Position = UDim2.new(0, 0, 0, 35)
+game.CoreGui["Keyboard gui WarriorRoberr Version"].Drag.KeyBoard.Bunb0ybun.TextSize = 10
+end)
+ExampleTab:DropDown("Example DropDown", {"Sentinel", "Shitnapse X", "ProtoCrasher"}, function(text)
+if text == "Sentinel" then
+print("Best Lego Hak")
+warn("but small memory")
+elseif text == "Shitnapse X" then
+print("plz update faster", "discord server is full of nub")
+elseif text == "ProtoCrasher" then
+print("i liek cresh")
+end
+end)
+
+end)
+
+
